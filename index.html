@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440">
+  <title>tentree — The New Summer Collection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      min-width: 1440px;
+      overflow-x: hidden;
+    }
+
+    /* ═══════════════════════════════════════
+       1. ANNOUNCEMENT BAR
+    ═══════════════════════════════════════ */
+    .ann-bar {
+      background: #0c0c0c;
+      color: #fff;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+    .ann-logo {
+      position: absolute;
+      left: 24px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .ann-arrow {
+      position: absolute;
+      right: 22px;
+      font-size: 10px;
+      opacity: 0.65;
+    }
+
+    /* ═══════════════════════════════════════
+       2. NAVIGATION
+    ═══════════════════════════════════════ */
+    .nav {
+      background: #fff;
+      border-bottom: 1px solid #ebebeb;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #111;
+      text-decoration: none;
+      margin-right: 52px;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #111;
+      text-decoration: none;
+    }
+    .nav-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .nav-icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      color: #111;
+      padding: 0;
+    }
+
+    /* ═══════════════════════════════════════
+       3. HERO
+    ═══════════════════════════════════════ */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 640px;
+      background-color: #b5a48a;
+      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1440&h=640&fit=crop&crop=bottom&q=85');
+      background-size: cover;
+      background-position: center 25%;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.08) 55%, transparent 80%);
+    }
+    .hero-content {
+      position: absolute;
+      z-index: 1;
+      left: 64px;
+      bottom: 88px;
+      color: #fff;
+      max-width: 520px;
+    }
+    .hero-headline {
+      font-size: 60px;
+      font-weight: 700;
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      margin-bottom: 18px;
+    }
+    .hero-subtext {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.65;
+      margin-bottom: 30px;
+      opacity: 0.9;
+      max-width: 400px;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+    }
+    .btn-white {
+      padding: 13px 28px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #fff;
+      color: #111;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+    }
+    .hero-dots {
+      position: absolute;
+      z-index: 1;
+      bottom: 22px;
+      right: 28px;
+      display: flex;
+      gap: 5px;
+    }
+    .hero-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.42);
+    }
+    .hero-dot.active { background: #fff; }
+
+    /* ═══════════════════════════════════════
+       SHARED: SECTION TOP ROW & TABS
+    ═══════════════════════════════════════ */
+    .section-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .section-title {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .arrow-group {
+      display: flex;
+      gap: 6px;
+    }
+    .arrow-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid #c8c8c8;
+      background: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #333;
+    }
+    .tabs {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 26px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .tab-item {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #999;
+      padding-bottom: 11px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .tab-item.active {
+      color: #111;
+      border-bottom-color: #111;
+    }
+
+    /* ═══════════════════════════════════════
+       4. NEW ARRIVALS
+    ═══════════════════════════════════════ */
+    .new-arrivals {
+      padding: 52px 48px 56px;
+    }
+    .product-grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+    .prod-card img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      display: block;
+    }
+    .prod-name {
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 10px;
+      line-height: 1.4;
+      color: #111;
+    }
+    .prod-price {
+      font-size: 13px;
+      color: #666;
+      margin-top: 3px;
+    }
+
+    /* ═══════════════════════════════════════
+       5. MOST POPULAR CATEGORIES
+    ═══════════════════════════════════════ */
+    .categories-section {
+      padding: 48px 48px 56px;
+    }
+    .categories-row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+    .cat-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .cat-card img {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      display: block;
+    }
+    .cat-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 36px 10px 12px;
+      background: linear-gradient(to top, rgba(0,0,0,0.58), transparent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+    }
+
+    /* ═══════════════════════════════════════
+       6. TREES TICKER
+    ═══════════════════════════════════════ */
+    .ticker {
+      background: #4a6741;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .ticker-track {
+      display: flex;
+      animation: scrollTicker 24s linear infinite;
+      white-space: nowrap;
+    }
+    .ticker-segment {
+      display: inline-flex;
+      align-items: center;
+      gap: 22px;
+      padding: 0 48px 0 0;
+      flex-shrink: 0;
+    }
+    .ticker-txt {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e8e2d8;
+    }
+    .ticker-num {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      color: #e8e2d8;
+    }
+    @keyframes scrollTicker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ═══════════════════════════════════════
+       7. EVERY ITEM PLANTS 10 TREES
+    ═══════════════════════════════════════ */
+    .impact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 540px;
+    }
+    .impact-left {
+      padding: 80px 72px 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .impact-h2 {
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 22px;
+    }
+    .impact-body {
+      font-size: 14px;
+      line-height: 1.72;
+      color: #444;
+      margin-bottom: 32px;
+      max-width: 430px;
+    }
+    .impact-btns {
+      display: flex;
+      gap: 12px;
+    }
+    .btn-outline-dark {
+      padding: 11px 26px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: transparent;
+      color: #111;
+      border: 1.5px solid #111;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+    }
+    .impact-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 4px;
+    }
+    .impact-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ═══════════════════════════════════════
+       8. REWARDS BANNER
+    ═══════════════════════════════════════ */
+    .rewards {
+      background: #2e4a31;
+      padding: 48px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .rewards-left {
+      max-width: 480px;
+    }
+    .rewards-left h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #f0ebe0;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .rewards-left p {
+      font-size: 14px;
+      color: rgba(240,235,224,0.75);
+      line-height: 1.55;
+    }
+    .rewards-deco {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 160px;
+      opacity: 0.14;
+      pointer-events: none;
+    }
+    .rewards-right {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: stretch;
+    }
+    .btn-cream-solid {
+      padding: 13px 32px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #f0ebe0;
+      color: #111;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 270px;
+    }
+    .btn-outline-cream {
+      padding: 13px 32px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: transparent;
+      color: #f0ebe0;
+      border: 1.5px solid rgba(240,235,224,0.65);
+      cursor: pointer;
+      text-decoration: none;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 270px;
+    }
+
+    /* ═══════════════════════════════════════
+       9. BESTSELLERS
+    ═══════════════════════════════════════ */
+    .bestsellers {
+      padding: 52px 48px 64px;
+    }
+    .product-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    /* ═══════════════════════════════════════
+       10. FEATURE STRIP
+    ═══════════════════════════════════════ */
+    .feature-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid #e0e0e0;
+    }
+    .feature-col {
+      padding: 52px 72px 56px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .feature-col:first-child {
+      border-right: 1px solid #e0e0e0;
+    }
+    .feature-col-deco {
+      position: absolute;
+      right: 48px;
+      top: 36px;
+      width: 100px;
+      opacity: 0.5;
+    }
+    .feature-col h3 {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      max-width: 300px;
+    }
+    .feature-col p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.65;
+      margin-bottom: 20px;
+      max-width: 360px;
+    }
+    .feature-link {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #111;
+      text-decoration: none;
+    }
+
+    /* ═══════════════════════════════════════
+       11. FOOTER
+    ═══════════════════════════════════════ */
+    .footer {
+      background: #111;
+      color: #bbb;
+      padding: 56px 48px 0;
+    }
+    .footer-main {
+      display: grid;
+      grid-template-columns: 170px 1fr 1fr 290px;
+      gap: 56px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid #252525;
+    }
+    .footer-certs {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .footer-cert {
+      height: 28px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.6;
+    }
+    .footer-col-head {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .footer-links-list a {
+      font-size: 13px;
+      color: #7a7a7a;
+      text-decoration: none;
+    }
+    .footer-input {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 13px;
+      background: #1c1c1c;
+      border: 1px solid #2e2e2e;
+      color: #ccc;
+      font-family: inherit;
+      margin-bottom: 8px;
+    }
+    .footer-input::placeholder { color: #4a4a4a; }
+    .footer-phone-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .footer-phone-code {
+      width: 68px;
+      padding: 10px 12px;
+      font-size: 13px;
+      background: #1c1c1c;
+      border: 1px solid #2e2e2e;
+      color: #ccc;
+      font-family: inherit;
+    }
+    .footer-phone-num {
+      flex: 1;
+      padding: 10px 14px;
+      font-size: 13px;
+      background: #1c1c1c;
+      border: 1px solid #2e2e2e;
+      color: #ccc;
+      font-family: inherit;
+    }
+    .footer-phone-code::placeholder,
+    .footer-phone-num::placeholder { color: #4a4a4a; }
+    .footer-subscribe-btn {
+      padding: 10px 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #3d6640;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .footer-social-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .footer-social-row a {
+      font-size: 20px;
+      color: #7a7a7a;
+      text-decoration: none;
+      line-height: 1;
+    }
+    .footer-badges {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .footer-badge {
+      padding: 7px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      border: 1px solid #3a3a3a;
+      color: #bbb;
+      white-space: nowrap;
+    }
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0 0;
+    }
+    .footer-payment-row {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .payment-chip {
+      background: #1e1e1e;
+      border: 1px solid #2e2e2e;
+      padding: 4px 9px;
+      font-size: 10px;
+      color: #888;
+      border-radius: 3px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .footer-legal {
+      font-size: 11px;
+      color: #4a4a4a;
+      text-align: center;
+      line-height: 1.7;
+      padding: 0 0 20px;
+    }
+    .footer-legal a {
+      color: #5a5a5a;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════
+       1. ANNOUNCEMENT BAR
+  ════════════════════════════ -->
+  <div class="ann-bar">
+    <span class="ann-logo">10</span>
+    <span>Free Shipping on Orders Over $80</span>
+    <span class="ann-arrow">▾</span>
+  </div>
+
+  <!-- ════════════════════════════
+       2. NAVIGATION
+  ════════════════════════════ -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">10</a>
+    <ul class="nav-links">
+      <li><a href="#">Womens</a></li>
+      <li><a href="#">Mens</a></li>
+      <li><a href="#">Accessories</a></li>
+      <li><a href="#">Climate+</a></li>
+      <li><a href="#">Impact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-icon-btn" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </button>
+      <button class="nav-icon-btn" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+      </button>
+      <button class="nav-icon-btn" aria-label="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════
+       3. HERO
+  ════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-headline">The New Summer<br>Collection</h1>
+      <p class="hero-subtext">Step into summer with new styles and fresh colours—made for the outdoors, designed to take you anywhere from sunrise hikes to sunset hangs and everything in between.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-white">Shop Womens</a>
+        <a href="#" class="btn-white">Shop Mens</a>
+      </div>
+    </div>
+    <div class="hero-dots">
+      <div class="hero-dot active"></div>
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       4. NEW ARRIVALS
+  ════════════════════════════ -->
+  <section class="new-arrivals">
+    <div class="section-top">
+      <h2 class="section-title">New Arrivals</h2>
+      <div class="arrow-group">
+        <button class="arrow-btn">&#8592;</button>
+        <button class="arrow-btn">&#8594;</button>
+      </div>
+    </div>
+    <div class="tabs">
+      <span class="tab-item active">Women's</span>
+      <span class="tab-item">Men's</span>
+      <span class="tab-item">Accessories</span>
+    </div>
+    <div class="product-grid-5">
+      <div class="prod-card">
+        <img src="https://www.tentree.com/cdn/shop/files/White-Relaxed-Breathable-Button-Up-Shirt-TCW6472-6268_1.jpg" alt="Relaxed Breathable Button-Up Shirt">
+        <p class="prod-name">Relaxed Breathable Button-Up Shirt</p>
+        <p class="prod-price">$89</p>
+      </div>
+      <div class="prod-card">
+        <img src="https://www.tentree.com/cdn/shop/files/Black-Mid-Rise-Wide-Jumpsuit-TCW6501-0164_5.jpg" alt="Mid-Rise Wide Jumpsuit">
+        <p class="prod-name">Mid-Rise Wide Jumpsuit</p>
+        <p class="prod-price">$119</p>
+      </div>
+      <div class="prod-card">
+        <img src="https://www.tentree.com/cdn/shop/files/Orange-Treeblend-Relaxed-Fit-Tank-Top-TCW6470-6053_1.jpg" alt="Treeblend Relaxed Fit Tank Top">
+        <p class="prod-name">Treeblend Relaxed Fit Tank Top</p>
+        <p class="prod-price">$49</p>
+      </div>
+      <div class="prod-card">
+        <img src="https://www.tentree.com/cdn/shop/files/Green-Organic-Cotton-Mini-Length-Dress-TCW6498-6069_1.jpg" alt="Organic Cotton Mini-Length Dress">
+        <p class="prod-name">Organic Cotton Mini-Length Dress</p>
+        <p class="prod-price">$99</p>
+      </div>
+      <div class="prod-card">
+        <img src="https://www.tentree.com/cdn/shop/files/Black-Organic-Cotton-Sleeveless-Button-Shirt-TCW6473-0164_3.jpg" alt="Organic Cotton Sleeveless Button Shirt">
+        <p class="prod-name">Organic Cotton Sleeveless Button Shirt</p>
+        <p class="prod-price">$89</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       5. MOST POPULAR CATEGORIES
+  ════════════════════════════ -->
+  <section class="categories-section">
+    <div class="section-top">
+      <h2 class="section-title">Most Popular Categories</h2>
+      <div class="arrow-group">
+        <button class="arrow-btn">&#8592;</button>
+        <button class="arrow-btn">&#8594;</button>
+      </div>
+    </div>
+    <div class="categories-row">
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&h=700&fit=crop&q=80" alt="Women's Sweaters & Cardigans">
+        <div class="cat-label">Women's Sweaters &amp; Cardigans ›</div>
+      </div>
+      <div class="cat-card">
+        <img src="https://www.tentree.com/cdn/shop/files/SP26_SiteImageRefresh_HPCategories_Mens_Hoodies_Sweatshirts_FA.jpg?v=1770414837&width=800" alt="Men's Hoodies & Sweatshirts">
+        <div class="cat-label">Men's Hoodies &amp; Sweatshirts ›</div>
+      </div>
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&h=700&fit=crop&q=80" alt="Women's Hoodies & Sweatshirts">
+        <div class="cat-label">Women's Hoodies &amp; Sweatshirts ›</div>
+      </div>
+      <div class="cat-card">
+        <img src="https://www.tentree.com/cdn/shop/files/SP26_SiteImageRefresh_HPCategories_Mens_Shirts_FA.jpg?v=1770414722&width=800" alt="Men's Tops & Shirts">
+        <div class="cat-label">Men's Tops &amp; Shirts ›</div>
+      </div>
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&h=700&fit=crop&q=80" alt="Women's Dresses & Rompers">
+        <div class="cat-label">Women's Dresses &amp; Rompers ›</div>
+      </div>
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=500&h=700&fit=crop&q=80" alt="Men's T-Shirts">
+        <div class="cat-label">Men's T-Shirts ›</div>
+      </div>
+      <div class="cat-card">
+        <img src="https://www.tentree.com/cdn/shop/files/SP26_SiteImageRefresh_HPCategories_Womens_Pants_FA.jpg?v=1770414631&width=800" alt="Women's Pants">
+        <div class="cat-label">Women's Pants ›</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       6. TREES TICKER
+  ════════════════════════════ -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <div class="ticker-segment"><span class="ticker-txt">Together We've Planted</span><span class="ticker-num">117,846,160</span><span class="ticker-txt">Trees</span></div>
+      <div class="ticker-segment"><span class="ticker-txt">Together We've Planted</span><span class="ticker-num">117,846,160</span><span class="ticker-txt">Trees</span></div>
+      <div class="ticker-segment"><span class="ticker-txt">Together We've Planted</span><span class="ticker-num">117,846,160</span><span class="ticker-txt">Trees</span></div>
+      <div class="ticker-segment"><span class="ticker-txt">Together We've Planted</span><span class="ticker-num">117,846,160</span><span class="ticker-txt">Trees</span></div>
+      <div class="ticker-segment"><span class="ticker-txt">Together We've Planted</span><span class="ticker-num">117,846,160</span><span class="ticker-txt">Trees</span></div>
+      <div class="ticker-segment"><span class="ticker-txt">Together We've Planted</span><span class="ticker-num">117,846,160</span><span class="ticker-txt">Trees</span></div>
+      <div class="ticker-segment"><span class="ticker-txt">Together We've Planted</span><span class="ticker-num">117,846,160</span><span class="ticker-txt">Trees</span></div>
+      <div class="ticker-segment"><span class="ticker-txt">Together We've Planted</span><span class="ticker-num">117,846,160</span><span class="ticker-txt">Trees</span></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════
+       7. EVERY ITEM PLANTS 10 TREES
+  ════════════════════════════ -->
+  <section class="impact">
+    <div class="impact-left">
+      <h2 class="impact-h2">Every Item Plants 10 Trees</h2>
+      <p class="impact-body">Join Us in Protecting the World We Play In. We're on a mission to restore the planet by planting trees and creating Earth-First, sustainably made apparel. For each tentree item sold, we plant trees worldwide that capture carbon, restore ecosystems, protect wildlife habitats, and create jobs in communities that need them most. Our goal is to plant 1 billion trees with you by 2030.</p>
+      <div class="impact-btns">
+        <a href="#" class="btn-outline-dark">Our Impact</a>
+        <a href="#" class="btn-outline-dark">About Us</a>
+      </div>
+    </div>
+    <div class="impact-right">
+      <img src="https://www.tentree.com/cdn/shop/files/trash_talk_section_worker_big_2.jpg?v=1743006196" alt="Tree planting worker">
+      <img src="https://www.tentree.com/cdn/shop/files/trash_talk_section_river_big_2.jpg?v=1743006196" alt="River landscape">
+      <img src="https://www.tentree.com/cdn/shop/files/trash_talk_section_plant_big_2.jpg?v=1743006197" alt="Plant seedling">
+      <img src="https://www.tentree.com/cdn/shop/files/trash_talk_section_river_big_2.jpg?v=1743006196" alt="Nature restoration">
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       8. REWARDS BANNER
+  ════════════════════════════ -->
+  <section class="rewards">
+    <div class="rewards-left">
+      <h2>Get Rewarded For Doing Good</h2>
+      <p>Join our Rewards Program to earn points that can be used as a cash on future purchases.</p>
+    </div>
+    <img class="rewards-deco" src="https://www.tentree.com/cdn/shop/files/Get_Rewarded_FA.svg?v=1743009093" alt="">
+    <div class="rewards-right">
+      <a href="#" class="btn-cream-solid">Create Account</a>
+      <a href="#" class="btn-outline-cream">Log In to View Points</a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       9. BESTSELLERS
+  ════════════════════════════ -->
+  <section class="bestsellers">
+    <div class="section-top">
+      <h2 class="section-title">Bestsellers</h2>
+      <div class="arrow-group">
+        <button class="arrow-btn">&#8592;</button>
+        <button class="arrow-btn">&#8594;</button>
+      </div>
+    </div>
+    <div class="tabs">
+      <span class="tab-item">Women's</span>
+      <span class="tab-item active">Men's</span>
+      <span class="tab-item">Accessories</span>
+    </div>
+    <div class="product-grid-4">
+      <div class="prod-card">
+        <img src="https://www.tentree.com/cdn/shop/files/Blue-Sunset-Graphic-Tee-TCM2096-3052_7.jpg" alt="Sunset Graphic Tee">
+        <p class="prod-name">Sunset Graphic Tee</p>
+        <p class="prod-price">$49</p>
+      </div>
+      <div class="prod-card">
+        <img src="https://www.tentree.com/cdn/shop/files/Multi-TreeBlend-Classic-Henley-Longsleeve-TCM2308-5834_232.jpg" alt="TreeBlend Classic Henley Longsleeve">
+        <p class="prod-name">TreeBlend Classic Henley Longsleeve</p>
+        <p class="prod-price">$79</p>
+      </div>
+      <div class="prod-card">
+        <img src="https://www.tentree.com/cdn/shop/files/Green-Colville-Quilted-Shacket-TCM2676-5591_5.jpg" alt="Colville Quilted Shacket">
+        <p class="prod-name">Colville Quilted Shacket</p>
+        <p class="prod-price">$149</p>
+      </div>
+      <div class="prod-card">
+        <img src="https://www.tentree.com/cdn/shop/files/Black-Tree-Graphic-Crew-Neck-T-Shirt-TCM1761-0451_47.jpg" alt="Tree Graphic Crew Neck T-Shirt">
+        <p class="prod-name">Tree Graphic Crew Neck T-Shirt</p>
+        <p class="prod-price">$49</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       10. FEATURE STRIP
+  ════════════════════════════ -->
+  <section class="feature-strip">
+    <div class="feature-col">
+      <img class="feature-col-deco" src="https://www.tentree.com/cdn/shop/files/Virtual_Forest_FA.svg?v=1743009093" alt="">
+      <h3>Get your own interactive virtual forest.</h3>
+      <p>Register trees and get your own virtual forest island that will change as you plant.</p>
+      <a href="#" class="feature-link">Learn more ›</a>
+    </div>
+    <div class="feature-col">
+      <img class="feature-col-deco" src="https://www.tentree.com/cdn/shop/files/Planting_Autopilot_FA.svg?v=1743009093" alt="">
+      <h3>Tree Planting on Auto Pilot</h3>
+      <p>Plant trees monthly to offset your lifestyle or just to help your planet cool off.</p>
+      <a href="#" class="feature-link">Subscribe Now ›</a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       11. FOOTER
+  ════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-main">
+
+      <!-- Certifications -->
+      <div class="footer-certs">
+        <img class="footer-cert" src="https://www.tentree.com/cdn/shop/files/B-Corp-certification.svg" alt="B Corp Certified">
+        <img class="footer-cert" src="https://www.tentree.com/cdn/shop/files/TheClimateLabel-Black-Horiz-Outline.svg" alt="The Climate Label">
+        <img class="footer-cert" src="https://www.tentree.com/cdn/shop/files/science_bases_targets_logo_converted.png" alt="Science Based Targets">
+        <img class="footer-cert" src="https://www.tentree.com/cdn/shop/files/RC_Landscape_Gradient_Colour_converted.png" alt="Restorative Coalition">
+      </div>
+
+      <!-- Support -->
+      <div>
+        <p class="footer-col-head">Support</p>
+        <ul class="footer-links-list">
+          <li><a href="#">contact</a></li>
+          <li><a href="#">help centre</a></li>
+          <li><a href="#">shipping</a></li>
+          <li><a href="#">returns &amp; exchanges</a></li>
+          <li><a href="#">klarna FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <p class="footer-col-head">Company</p>
+        <ul class="footer-links-list">
+          <li><a href="#">store locator</a></li>
+          <li><a href="#">fit guide</a></li>
+          <li><a href="#">trade in program</a></li>
+          <li><a href="#">become a retailer</a></li>
+          <li><a href="#">corporate product orders</a></li>
+          <li><a href="#">careers</a></li>
+        </ul>
+      </div>
+
+      <!-- Connected -->
+      <div>
+        <p class="footer-col-head">Connected</p>
+        <input class="footer-input" type="email" placeholder="Email address">
+        <div class="footer-phone-row">
+          <input class="footer-phone-code" type="text" placeholder="US">
+          <input class="footer-phone-num" type="tel" placeholder="US phone number">
+        </div>
+        <button class="footer-subscribe-btn">Subscribe Now ›</button>
+        <div class="footer-social-row">
+          <a href="#" title="Instagram">&#9711;</a>
+          <a href="#" title="Facebook">f</a>
+          <a href="#" title="TikTok">&#9711;</a>
+        </div>
+        <div class="footer-badges">
+          <span class="footer-badge">SAVE 20% ›</span>
+          <span class="footer-badge">GET $20 ›</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="footer-payment-row">
+        <span class="payment-chip">Apple Pay</span>
+        <span class="payment-chip">Google Pay</span>
+        <span class="payment-chip">Klarna</span>
+        <span class="payment-chip">Mastercard</span>
+        <span class="payment-chip">PayPal</span>
+        <span class="payment-chip">Shop Pay</span>
+        <span class="payment-chip">Visa</span>
+      </div>
+      <p class="footer-legal">
+        © 2025 All Rights Reserved &nbsp;·&nbsp; <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms and Conditions</a><br>
+        Territories of the Coast Salish Nations — x̱məθkʷəy̓əm (Musqueam), Sḵwx̱wú7mesh (Squamish) and səlilwətaɬ (Tsleil-Waututh).<br>
+        <a href="#">and additional Dish With One Spoon Wampum</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
